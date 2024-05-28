@@ -31,6 +31,8 @@ class PurchaseOrder(models.Model):
                 qty = line.product_uom_qty or 1
                 num += qty * line.receipt_percentage
                 den += qty
+            if den == 0:
+                continue
             ratio = num / den
             order.update(
                 {
